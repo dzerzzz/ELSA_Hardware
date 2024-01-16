@@ -1,0 +1,10 @@
+Output: Export STEP
+Type  : ExportSTEP
+From  : Variant [[No Variations]] of PCB Document [Proto_Lolek.PcbDoc]
+   Generated File[Proto_Lolek.step]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 18:27:44 On 03.05.2023
