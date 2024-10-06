@@ -1,0 +1,501 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">03.05.2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">18:26:47</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc" class="file"><acronym title="D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc">D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Waived Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">24</td></tr>
+</table>
+</td>
+</table><a name="IDTIQDKTLHUELJPRY33H0S5TDIDPMVCAME22BGVAK0X31KNCFHYB3J"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR0CQORVVETKUJ53TIPGQY3IKUIUSU3UC5F5KFTGJBEVD5XAM0MBF">Clearance Constraint (Gap=0.15mm) (not (OnLayer('Top Shield') or OnLayer('Bottom Shield'))),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRKBZRTQTBHATFAVGOOLAS1VO3EFU5ASOSK3NMUIG3H3SHQYWB4DE">Clearance Constraint (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNXVGLACMD2IPNCY013P3GXABBCVO4PQ0WV1KJ2FNTMPBTFCO42JK">Clearance Constraint (Gap=0.4mm) (InNetClass('HV')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5ZO40BEYFLKWNKAKMAYKRWLUGERI1UDOMKJTQH5LXWGE2ZWZJ4I">Clearance Constraint (Gap=0.1mm) (TouchesRoom('BGA')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHK0YDDU0YIHHELECWB1TYNNBELE5DT25T0EN0PNKPOBPETWMDJKO">Clearance Constraint (Gap=0.15mm) (InNetClass('HDI')),(InNetClass('HDI'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID33OGZYQHISXMK2ARRN4JIVHG4LY2OHUE1XNESLMBX5FE1SE4CD3O">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGL2OZNQZT5LNC2C3MCOUVOZAGBF5DS5AR5PU53OXSHY5WKNMPN2N">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTVBBYKBSWQJGO0WGUXBPFII2BGNUKLF354B51LFRCORAW0SRMLAO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGZTQ2GPRILF0ITCG0WIENEAMNCK00YWSCXHBHVDFCNUORW2J50UG">Width Constraint (Min=0.1mm) (Max=2mm) (Preferred=0.1mm) ((InNetClass('FinePitch') or InNetClass('HDI')) and  TouchesRoom('BGA'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBO2T43YMTAHMDCZW25YB0VXWQJ2512AQZIWMBOM4J5QBYDYKICMG">Width Constraint (Min=0.15mm) (Max=2mm) (Preferred=0.15mm) (InNetClass('FinePitch') or InNetClass('HDI'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5QWWMNBRUSBHOF0NZPGIVZPGNP2IP5AJJLZVGDZP42M5XNQSZ1B">Width Constraint (Min=0.2mm) (Max=2mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNOQN1LR00O52N0SSZNPRTGQ34FWAP1KI3NSEBDGMVAD32AQUUDAD">Power Plane Connect Rule(Relief Connect )(Expansion=0.5mm) (Conductor Width=0.25mm) (Air Gap=0.25mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFTXF3Z431MPCJE2RXLEIZDMNBBMDTELLP51RNCLFSJHJR3GZPT0I">Minimum Annular Ring (Minimum=0.1mm) (InNetClass('HDI') or TouchesRoom('BGA'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTUPPVWJ5HU3INKFPYZCILP1QDKIKMKXCN3QTY0PEVLYFD3OCHBGE">Minimum Annular Ring (Minimum=0.1mm) (IsThruPin)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF1ZKUARXBWY1KGX4Y3W2PKNWCJTIVBVZL4IQPTPBJ4C0UKKJIVWK">Minimum Annular Ring (Minimum=0.1mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDY1NUDT4QOSEPELDTEBHV2CRUOIDFOWYIQQA4WHCQSEBQ1SH31VFE">Hole Size Constraint (Min=0.2mm) (Max=5.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDISDQPOTUJSYXC41XSCF45HMHLLNNV33TZ3BDGZCL5LAIHQPSGNUN">Hole To Hole Clearance (Gap=0.3mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJXSO3ZJYJLQGHZ0YWQXH2UJ3GESJBXCM34WRAVNY44OLQIYBJNPC">Minimum Solder Mask Sliver (Gap=0.09mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSM0QTFYO1KJCG2STKN0BZDONYB1QPGE1ST5DJAGVY0SX1YP424XI">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0OPIMDOSV53LI1KIJYGA4ZCPKE3XBS04005WORNSQND1RROWR2KP">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0PBLHBIURBJUL5OW3YJ1RQJ43JRY4MTJUEO25CJSZGYZEUBXAWWI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5UHAYLEYHVGBMFE0BIJ31O33ILGFRQG0QDSC5AHQ00GIC1ULFHAI">Board Clearance Constraint (Gap=0mm) (OnLayer('Top Overlay') or OnLayer('Bottom Overlay'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4IWATWNLTWN4D5RJT35DOV11UO1L53YYHT34HYFNEZHABI3UYRLK">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP3ABRMWTVMGQKMKQNI4Z24AYEOBUDVJEAZKKCSFLPNEUS2TL1H0H">Room U_MCU_Supply (Bounding Region = (153.7mm, 43.2mm, 204.5mm, 68.6mm) (InComponentClass('U_MCU_Supply'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUWHUHZGAMHHQBD5T3VKOOTMMOLHPBDCLUJM21EGBWNRLPQKJ2FJ">Room U_MCU_Init (Bounding Region = (154.8mm, 14.2mm, 205.6mm, 39.6mm) (InComponentClass('U_MCU_Init'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSSBMUTQ4GOJLFLWWAFHXRX5BFLWW3JAL2FFTKEDPY5FFATPFJL0M">Room U_MCU_GPIO (Bounding Region = (212mm, 13.5mm, 262.8mm, 38.9mm) (InComponentClass('U_MCU_GPIO'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQXRZC31BTA53UYOPXSPGR2ETKMJO1BM4THEC5GIXMAEGML5KMHD">Room U_Temp_NTC (Bounding Region = (212.4mm, 101.9mm, 263.2mm, 127.3mm) (InComponentClass('U_Temp_NTC'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVJFW01IQDXGJJDOEJPQGML2H3BTZN2SE0DJORMZKO2TMIW0GEBI">Room U_Peltier (Bounding Region = (152.6mm, 71.1mm, 203.4mm, 96.5mm) (InComponentClass('U_Peltier'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBJWWIRSQSLRYIWOPKJEDUEJS2FVXV5U3PKYRNCCZOS1D4QS4OQDB">Room U_Peltier_1s (Bounding Region = (152.5mm, 98.5mm, 203.3mm, 123.9mm) (InComponentClass('U_Peltier_1s'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDHCP33DCXOO4FFMPJ15R2BRGWHZVTTL0NQ1QGZOUIA1UWSRDCKOP">Room U_Connectors (Bounding Region = (266.9mm, 21.9mm, 272.3mm, 31.2mm) (InComponentClass('U_Connectors'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4GM544RPJPPEENUUCNLADVB1HDFMSUY51LSPNMDQCLELK5RS1F5K">Room U_Current_Measurement (Bounding Region = (213mm, 72.5mm, 263.8mm, 97.9mm) (InComponentClass('U_Current_Measurement'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDC2T2UEIEY5JQOIBPOQHC0OZXHCCC0JG45HHAYANYKPJUIMFDZWYK">Room U_Fan_Control (Bounding Region = (212mm, 42.1mm, 262.8mm, 67.5mm) (InComponentClass('U_Fan_Control'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT0Z5EUM1RB13OHYX1IEC34EWRCN04QFOMDB5J3O2T2AWRBDF0BGM">Component Clearance Constraint ( Horizontal Gap = 0.5mm, Vertical Gap = 0.5mm ) ((CompPinCount &gt; 1)),((CompPinCount &gt; 1)) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOZKBUUNIMWXTLIJX5IWU3SFEO2DC51QI5RCZDJK4ICRAEDDGLML">Height Constraint (Min=0mm) (Max=50mm) (Prefered=10mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Waived Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGNMCJBR3CCF5KHE2LOL1QGZ00BOW2PVEU2TKMCMMVBHFRPICXIXJ">Minimum Solder Mask Sliver (Gap=0.09mm) (All),(All)</a></td>
+<td class="column2">24</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">24</td>
+</tr>
+</table><br><a name="IDVNYOJDDHCNNVFK3FQPE15W4WGM3MOCMJX4CLJIM5UB2EMCGTJWSI"><h2>Rule Violations</h2></a><a name="IDS3KWYZTLUOTMF3ZLIKEYF4J22NVWAEIDSAIDVTJBJLH5PMAZPGTI"><h2>Waived Violations</h2></a><a name="IDGNMCJBR3CCF5KHE2LOL1QGZ00BOW2PVEU2TKMCMMVBHFRPICXIXJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Minimum Solder Mask Sliver (Gap=0.09mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3148.489mil|Location2.X=3156.852mil|Location1.Y=2783.627mil|Location2.Y=2790.248mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3148.489mil|Location2.X=3156.852mil|Location1.Y=2783.627mil|Location2.Y=2790.248mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q6-1(45.569mm,45.065mm) on Top Layer And Pad Q6-3(44.634mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3148.489mil|Location2.X=3156.896mil|Location1.Y=2831.889mil|Location2.Y=2838.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3148.489mil|Location2.X=3156.896mil|Location1.Y=2831.889mil|Location2.Y=2838.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q6-2(45.569mm,46.935mm) on Top Layer And Pad Q6-3(44.634mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3097.997mil|Location2.X=3102.79mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3097.997mil|Location2.X=3102.79mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q6-3(44.269mm,45.065mm) on Top Layer And Pad Q6-3(44.634mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3115.714mil|Location2.X=3120.507mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3115.714mil|Location2.X=3120.507mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q6-3(44.269mm,46.935mm) on Top Layer And Pad Q6-3(44.634mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3123.588mil|Location2.X=3128.381mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3123.588mil|Location2.X=3128.381mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q6-3(44.634mm,46mm) on Top Layer And Pad Q6-3(44.919mm,45.065mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3141.304mil|Location2.X=3146.097mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3141.304mil|Location2.X=3146.097mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q6-3(44.634mm,46mm) on Top Layer And Pad Q6-3(44.919mm,46.935mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.694mil|Location2.X=2669.056mil|Location1.Y=2833.627mil|Location2.Y=2840.248mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.694mil|Location2.X=2669.056mil|Location1.Y=2833.627mil|Location2.Y=2840.248mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q7-1(32.694mm,46.935mm) on Top Layer And Pad Q7-3(33.629mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.694mil|Location2.X=2669.101mil|Location1.Y=2781.889mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2660.694mil|Location2.X=2669.101mil|Location1.Y=2781.889mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q7-2(32.694mm,45.065mm) on Top Layer And Pad Q7-3(33.629mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2667.879mil|Location2.X=2672.672mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2667.879mil|Location2.X=2672.672mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q7-3(33.344mm,45.065mm) on Top Layer And Pad Q7-3(33.629mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2685.595mil|Location2.X=2690.389mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2685.595mil|Location2.X=2690.389mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q7-3(33.344mm,46.935mm) on Top Layer And Pad Q7-3(33.629mm,46mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2693.47mil|Location2.X=2698.263mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2693.47mil|Location2.X=2698.263mil|Location1.Y=2783.627mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q7-3(33.629mm,46mm) on Top Layer And Pad Q7-3(33.994mm,45.065mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2711.186mil|Location2.X=2715.979mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2711.186mil|Location2.X=2715.979mil|Location1.Y=2833.627mil|Location2.Y=2838.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q7-3(33.629mm,46mm) on Top Layer And Pad Q7-3(33.994mm,46.935mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4153.633mil|Location1.Y=2350.038mil|Location2.Y=2358.401mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4153.633mil|Location1.Y=2350.038mil|Location2.Y=2358.401mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q8-1(70.389mm,34.2mm) on Top Layer And Pad Q8-3(71.324mm,35.135mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4203.544mil|Location1.Y=2353.607mil|Location2.Y=2362.015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4203.544mil|Location1.Y=2353.607mil|Location2.Y=2362.015mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q8-2(72.259mm,34.2mm) on Top Layer And Pad Q8-3(71.324mm,35.135mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4151.806mil|Location1.Y=2378.509mil|Location2.Y=2383.302mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4151.806mil|Location1.Y=2378.509mil|Location2.Y=2383.302mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q8-3(70.389mm,34.85mm) on Top Layer And Pad Q8-3(71.324mm,35.135mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4151.806mil|Location1.Y=2404.099mil|Location2.Y=2408.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4147.013mil|Location2.X=4151.806mil|Location1.Y=2404.099mil|Location2.Y=2408.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q8-3(70.389mm,35.5mm) on Top Layer And Pad Q8-3(71.324mm,35.135mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4201.806mil|Location1.Y=2360.793mil|Location2.Y=2365.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4201.806mil|Location1.Y=2360.793mil|Location2.Y=2365.586mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q8-3(71.324mm,35.135mm) on Top Layer And Pad Q8-3(72.259mm,34.85mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4201.806mil|Location1.Y=2386.383mil|Location2.Y=2391.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4197.013mil|Location2.X=4201.806mil|Location1.Y=2386.383mil|Location2.Y=2391.176mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q8-3(71.324mm,35.135mm) on Top Layer And Pad Q8-3(72.259mm,35.5mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2376.862mil|Location1.Y=2445.511mil|Location2.Y=2453.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2376.862mil|Location1.Y=2445.511mil|Location2.Y=2453.873mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q9-1(25.259mm,36.625mm) on Top Layer And Pad Q9-3(26.194mm,37.56mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2426.773mil|Location1.Y=2449.08mil|Location2.Y=2457.487mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2426.773mil|Location1.Y=2449.08mil|Location2.Y=2457.487mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.078mm &lt; 0.09mm) Between Pad Q9-2(27.129mm,36.625mm) on Top Layer And Pad Q9-3(26.194mm,37.56mm) on Top Layer [Top Solder] Mask Sliver [0.078mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2375.034mil|Location1.Y=2473.981mil|Location2.Y=2478.775mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2375.034mil|Location1.Y=2473.981mil|Location2.Y=2478.775mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q9-3(25.259mm,37.275mm) on Top Layer And Pad Q9-3(26.194mm,37.56mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2375.034mil|Location1.Y=2499.572mil|Location2.Y=2504.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.241mil|Location2.X=2375.034mil|Location1.Y=2499.572mil|Location2.Y=2504.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q9-3(25.259mm,37.925mm) on Top Layer And Pad Q9-3(26.194mm,37.56mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2425.034mil|Location1.Y=2456.265mil|Location2.Y=2461.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2425.034mil|Location1.Y=2456.265mil|Location2.Y=2461.058mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q9-3(26.194mm,37.56mm) on Top Layer And Pad Q9-3(27.129mm,37.275mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2425.034mil|Location1.Y=2481.856mil|Location2.Y=2486.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Space systems\Peltier Control\peltier-ctrl\ECAD\Proto_Lolek\Proto_Lolek.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2420.241mil|Location2.X=2425.034mil|Location1.Y=2481.856mil|Location2.Y=2486.649mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.07mm &lt; 0.09mm) Between Pad Q9-3(26.194mm,37.56mm) on Top Layer And Pad Q9-3(27.129mm,37.925mm) on Top Layer [Top Solder] Mask Sliver [0.07mm]</acronym></a><br>Waived by Piotr Duszkiewicz at 02.05.2023 14:46:51<br>taki footprint komponentu (zostal sprawdzony)</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
